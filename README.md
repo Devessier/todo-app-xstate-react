@@ -1,6 +1,6 @@
 # todo-app-xstate-react
 
-Simple todo list application made with XState and React.
+Simple todo list application made with XState and Next.js.
 
 It's a port of [Devessier/todo-app-xstate-test](https://github.com/Devessier/todo-app-xstate-test) to React.
 
@@ -12,7 +12,7 @@ Install dependencies:
 npm install
 ```
 
-Launch Vite development server:
+Launch Next.js development server:
 
 ```bash
 npm run dev
