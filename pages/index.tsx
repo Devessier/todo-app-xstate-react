@@ -1,11 +1,12 @@
+import { useMachine } from "@xstate/react";
+import type { NextPage } from "next";
 import { FormEvent } from "react";
 import { useKey } from "react-use";
-import { useMachine } from "@xstate/react";
 import { PlusIcon } from "@heroicons/react/solid";
-import CheckboxList from "./components/CheckboxList";
-import { todosMachine } from "./machines/todosMachine";
+import CheckboxList from "../components/CheckboxList";
+import { todosMachine } from "../machines/todosMachine";
 
-function App() {
+const Home: NextPage = () => {
   const [state, send] = useMachine(todosMachine);
 
   const showTodoCreationForm = state.hasTag("showTodoCreationForm");
@@ -119,7 +120,7 @@ function App() {
                           id="new-todo"
                           type="text"
                           name="new-todo"
-                          className="block w-full border-gray-300 rounded-md shadow-sm  focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
+                          className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
                           placeholder="Write an article about XState"
                         />
                       </div>
@@ -127,14 +128,14 @@ function App() {
                       <div className="flex justify-start pt-5">
                         <button
                           type="submit"
-                          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-yellow-500 border border-transparent rounded-md shadow-sm  hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-yellow-500 border border-transparent rounded-md shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                         >
                           Save
                         </button>
 
                         <button
                           type="button"
-                          className="px-4 py-2 ml-3 text-sm font-medium bg-white border border-gray-300 rounded-md shadow-sm  text-blue-gray-900 hover:bg-blue-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                          className="px-4 py-2 ml-3 text-sm font-medium bg-white border border-gray-300 rounded-md shadow-sm text-blue-gray-900 hover:bg-blue-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                           onClick={handleCloseTodoCreation}
                         >
                           Cancel
@@ -146,7 +147,7 @@ function App() {
               ) : (
                 <button
                   type="button"
-                  className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-yellow-500 border border-transparent rounded-full shadow-sm  hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                  className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-yellow-500 border border-transparent rounded-full shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                   onClick={handleOpenTodoCreation}
                 >
                   <PlusIcon
@@ -168,6 +169,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Home;
