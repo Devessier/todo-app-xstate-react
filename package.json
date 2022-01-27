@@ -9,11 +9,11 @@
   "dependencies": {
     "@heroicons/react": "^1.0.5",
     "@tailwindcss/forms": "^0.4.0",
-    "@xstate/react": "^2.0.0",
+    "@xstate/react": "^1.6.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-use": "^17.3.2",
-    "xstate": "^4.29.0"
+    "xstate": "4.28.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",
