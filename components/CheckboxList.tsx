@@ -63,7 +63,7 @@ function CheckboxList({
           <p className="text-base text-gray-500">No todos here!</p>
         ) : (
           items.map(({ id, label, checked }) => (
-            <li key={label} className="relative flex items-start">
+            <li key={id} className="relative flex items-start">
               <div className="flex items-center h-5">
                 <input
                   checked={checked}
