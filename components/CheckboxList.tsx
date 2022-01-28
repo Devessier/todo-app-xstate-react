@@ -59,6 +59,8 @@ function CheckboxList({
       <ul className="mt-4 space-y-2">
         {isLoading === true ? (
           <CheckboxListSkeletons />
+        ) : items.length === 0 ? (
+          <p className="text-base text-gray-500">No todos here!</p>
         ) : (
           items.map(({ id, label, checked }) => (
             <li key={label} className="relative flex items-start">
