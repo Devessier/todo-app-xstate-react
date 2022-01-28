@@ -1,6 +1,11 @@
 import { assign, DoneInvokeEvent } from "xstate";
 import { createModel } from "xstate/lib/model";
+import { nanoid } from "nanoid/non-secure";
 import { TodoItem } from "../types";
+
+function generateId(): string {
+  return nanoid();
+}
 
 function waitForTimeout(ms: number) {
   return new Promise((resolve) => {
@@ -43,17 +48,17 @@ export const todosMachine = todoModel.createMachine({
 
           const initialTodos = [
             {
-              id: "1",
+              id: generateId(),
               label: "Clean my computer",
               checked: false,
             },
             {
-              id: "2",
+              id: generateId(),
               label: "Buy a keyboard",
               checked: false,
             },
             {
-              id: "3",
+              id: generateId(),
               label: "Write an article about @xtate/test",
               checked: true,
             },
@@ -99,7 +104,7 @@ export const todosMachine = todoModel.createMachine({
             todos: ({ todos }, { todo }) => [
               ...todos,
               {
-                id: todo,
+                id: nanoid(),
                 label: todo,
                 checked: false,
               },
@@ -121,7 +126,7 @@ export const todosMachine = todoModel.createMachine({
 
             return {
               ...todo,
-              checked: checked,
+              checked,
             };
           }),
       }),
