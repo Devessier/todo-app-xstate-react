@@ -1,25 +1,16 @@
+import { assign, DoneInvokeEvent } from "xstate";
 import { createModel } from "xstate/lib/model";
 import { TodoItem } from "../types";
 
+function waitForTimeout(ms: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 const todoModel = createModel(
   {
-    todos: [
-      {
-        id: "1",
-        label: "Clean my computer",
-        checked: false,
-      },
-      {
-        id: "2",
-        label: "Buy a keyboard",
-        checked: false,
-      },
-      {
-        id: "3",
-        label: "Write an article about @xtate/test",
-        checked: true,
-      },
-    ] as TodoItem[],
+    todos: [] as TodoItem[],
   },
   {
     events: {
@@ -42,9 +33,49 @@ export const todosMachine = todoModel.createMachine({
 
   context: todoModel.initialContext,
 
-  initial: "idle",
+  initial: "fetchingTodos",
 
   states: {
+    fetchingTodos: {
+      invoke: {
+        src: async (_context, _event): Promise<TodoItem[]> => {
+          await waitForTimeout(1_000);
+
+          const initialTodos = [
+            {
+              id: "1",
+              label: "Clean my computer",
+              checked: false,
+            },
+            {
+              id: "2",
+              label: "Buy a keyboard",
+              checked: false,
+            },
+            {
+              id: "3",
+              label: "Write an article about @xtate/test",
+              checked: true,
+            },
+          ];
+
+          return initialTodos;
+        },
+
+        onDone: {
+          target: "idle",
+
+          actions: assign((_context, event) => {
+            const { data: todos } = event as DoneInvokeEvent<TodoItem[]>;
+
+            return {
+              todos,
+            };
+          }),
+        },
+      },
+    },
+
     idle: {
       on: {
         CREATE_TODO: {

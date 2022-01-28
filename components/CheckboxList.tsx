@@ -1,14 +1,42 @@
 import React, { ChangeEvent } from "react";
+import clsx from "clsx";
 import { TodoItem } from "../types";
 
+function CheckboxListSkeletons() {
+  const widthClasses = ["w-64", "w-32", "w-48"];
+
+  return (
+    <>
+      {Array.from({ length: 3 }).map((_, index) => {
+        const widthClass = widthClasses[index % widthClasses.length];
+
+        return (
+          <div
+            key={index}
+            className={clsx([
+              "h-4 bg-gray-200 rounded-md animate-pulse max-w-full",
+              widthClass,
+            ])}
+          />
+        );
+      })}
+    </>
+  );
+}
+
 interface CheckboxListProps {
+  isLoading: boolean;
   items: TodoItem[];
-  // eslint-disable-next-line no-unused-vars
   onCheckboxChange: (id: string, checked: boolean) => void;
   title: string;
 }
 
-function CheckboxList({ title, items, onCheckboxChange }: CheckboxListProps) {
+function CheckboxList({
+  isLoading,
+  title,
+  items,
+  onCheckboxChange,
+}: CheckboxListProps) {
   function handleCheckboxChangeEvent(
     id: string,
     event: ChangeEvent<HTMLInputElement>
@@ -23,39 +51,39 @@ function CheckboxList({ title, items, onCheckboxChange }: CheckboxListProps) {
   }
 
   return (
-    <fieldset>
+    <fieldset className="grid grid-cols-1">
       <legend className="text-lg font-medium leading-6 text-gray-900">
         {title}
       </legend>
 
       <ul className="mt-4 space-y-2">
-        {items.map(({ id, label, checked }) => (
-          <li
-            v-for=" in props.items"
-            key={label}
-            className="relative flex items-start"
-          >
-            <div className="flex items-center h-5">
-              <input
-                checked={checked}
-                aria-describedby={`todo-${id}-description`}
-                name={`todo-${id}`}
-                type="checkbox"
-                className="w-4 h-4 text-yellow-600 border-gray-300 rounded  focus:ring-yellow-500"
-                onChange={(event) => handleCheckboxChangeEvent(id, event)}
-              />
-            </div>
+        {isLoading === true ? (
+          <CheckboxListSkeletons />
+        ) : (
+          items.map(({ id, label, checked }) => (
+            <li key={label} className="relative flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  checked={checked}
+                  aria-describedby={`todo-${id}-description`}
+                  name={`todo-${id}`}
+                  type="checkbox"
+                  className="w-4 h-4 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500"
+                  onChange={(event) => handleCheckboxChangeEvent(id, event)}
+                />
+              </div>
 
-            <div className="ml-3 text-sm">
-              <span
-                id={`todo-${id}-description`}
-                className="font-medium text-gray-700"
-              >
-                {label}
-              </span>
-            </div>
-          </li>
-        ))}
+              <div className="ml-3 text-sm">
+                <span
+                  id={`todo-${id}-description`}
+                  className="font-medium text-gray-700"
+                >
+                  {label}
+                </span>
+              </div>
+            </li>
+          ))
+        )}
       </ul>
     </fieldset>
   );
