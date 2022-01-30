@@ -25,6 +25,7 @@ function CheckboxListSkeletons() {
 }
 
 interface CheckboxListProps {
+  disableAllList: boolean;
   isLoading: boolean;
   items: TodoItem[];
   onCheckboxChange: (id: string, checked: boolean) => void;
@@ -32,6 +33,7 @@ interface CheckboxListProps {
 }
 
 function CheckboxList({
+  disableAllList,
   isLoading,
   title,
   items,
@@ -66,6 +68,7 @@ function CheckboxList({
             <li key={id} className="relative flex items-start">
               <div className="flex items-center h-5">
                 <input
+                  disabled={disableAllList}
                   checked={checked}
                   aria-describedby={`todo-${id}-description`}
                   name={`todo-${id}`}

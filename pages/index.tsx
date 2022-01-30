@@ -94,6 +94,7 @@ const Home: NextPage = () => {
 
   const isLoadingInitialTodos = state.matches("fetchingTodos");
   const showTodoCreationForm = state.hasTag("showTodoCreationForm");
+  const isSendingRequestToServer = state.hasTag("isSendingRequestToServer");
   const thingsToDo = state.context.todos.filter(
     ({ checked }) => checked === false
   );
@@ -155,6 +156,7 @@ const Home: NextPage = () => {
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="px-4 py-8 space-y-4 sm:px-0">
               <CheckboxList
+                disableAllList={isSendingRequestToServer}
                 isLoading={isLoadingInitialTodos}
                 items={thingsToDo}
                 onCheckboxChange={handleTodoStatusUpdate}
@@ -169,6 +171,7 @@ const Home: NextPage = () => {
               ) : (
                 <button
                   type="button"
+                  disabled={isSendingRequestToServer}
                   className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-yellow-500 border border-transparent rounded-full shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                   onClick={handleOpenTodoCreation}
                 >
@@ -181,6 +184,7 @@ const Home: NextPage = () => {
               )}
 
               <CheckboxList
+                disableAllList={isSendingRequestToServer}
                 isLoading={isLoadingInitialTodos}
                 items={thingsDone}
                 onCheckboxChange={handleTodoStatusUpdate}
