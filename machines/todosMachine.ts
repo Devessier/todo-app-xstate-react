@@ -70,12 +70,12 @@ export const todosMachine = todoModel.createMachine({
         onDone: {
           target: "idle",
 
-          actions: assign((_context, event) => {
-            const { data: todos } = event as DoneInvokeEvent<TodoItem[]>;
+          actions: assign({
+            todos: (_context, event: DoneInvokeEvent<TodoItem[]>) => {
+              const { data: todos } = event;
 
-            return {
-              todos,
-            };
+              return todos;
+            },
           }),
         },
       },
