@@ -16,7 +16,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-use": "^17.3.2",
-    "xstate": "4.28.1"
+    "xstate": "4.29.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.4.0",

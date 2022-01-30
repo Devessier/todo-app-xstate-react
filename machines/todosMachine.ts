@@ -1,5 +1,4 @@
-import { assign, DoneInvokeEvent } from "xstate";
-import { createModel } from "xstate/lib/model";
+import { assign, createMachine } from "xstate";
 import { nanoid } from "nanoid/non-secure";
 import { TodoItem } from "../types";
 
@@ -13,111 +12,130 @@ function waitForTimeout(ms: number) {
   });
 }
 
-const todoModel = createModel(
+type Context = {
+  todos: TodoItem[];
+};
+
+type Event =
+  | { type: "CREATE_TODO" }
+  | { type: "CLOSE_TODO_CREATION" }
+  | { type: "UPDATE_TODO_STATUS"; id: string; checked: boolean }
+  | { type: "SAVE_TODO"; todo: string };
+
+export const todosMachine = createMachine(
   {
-    todos: [] as TodoItem[],
+    id: "todos",
+
+    tsTypes: {} as import("./todosMachine.typegen").Typegen0,
+
+    schema: {
+      context: {} as Context,
+      events: {} as Event,
+      services: {} as {
+        fetchTodos: {
+          data: TodoItem[];
+        };
+      },
+    },
+
+    context: {
+      todos: [],
+    },
+
+    initial: "fetchingTodos",
+
+    states: {
+      fetchingTodos: {
+        invoke: {
+          src: "fetchTodos",
+
+          onDone: {
+            target: "idle",
+
+            actions: "assignInitialTodosToContext",
+          },
+        },
+      },
+
+      idle: {
+        on: {
+          CREATE_TODO: {
+            target: "creatingTodo",
+          },
+        },
+      },
+
+      creatingTodo: {
+        tags: "showTodoCreationForm",
+
+        on: {
+          CLOSE_TODO_CREATION: {
+            target: "idle",
+          },
+
+          SAVE_TODO: {
+            target: "idle",
+
+            actions: "assignNewTodoToContext",
+          },
+        },
+      },
+    },
+
+    on: {
+      UPDATE_TODO_STATUS: {
+        actions: "updateTodoStatus",
+      },
+    },
   },
   {
-    events: {
-      CREATE_TODO: () => ({}),
+    services: {
+      fetchTodos: async (_context, _event): Promise<TodoItem[]> => {
+        await waitForTimeout(1_000);
 
-      CLOSE_TODO_CREATION: () => ({}),
+        const initialTodos = [
+          {
+            id: generateId(),
+            label: "Clean my computer",
+            checked: false,
+          },
+          {
+            id: generateId(),
+            label: "Buy a keyboard",
+            checked: false,
+          },
+          {
+            id: generateId(),
+            label: "Write an article about @xtate/test",
+            checked: true,
+          },
+        ];
 
-      SAVE_TODO: (todo: string) => ({ todo }),
+        return initialTodos;
+      },
+    },
 
-      UPDATE_TODO_STATUS: (id: string, checked: boolean) => ({
-        id,
-        checked,
+    actions: {
+      assignInitialTodosToContext: assign({
+        todos: (_context, event) => {
+          const { data: todos } = event;
+
+          return todos;
+        },
       }),
-    },
-  }
-);
 
-export const todosMachine = todoModel.createMachine({
-  id: "todos",
+      assignNewTodoToContext: assign({
+        todos: ({ todos }, { todo }) => [
+          ...todos,
+          {
+            id: nanoid(),
+            label: todo,
+            checked: false,
+          },
+        ],
+      }),
 
-  context: todoModel.initialContext,
-
-  initial: "fetchingTodos",
-
-  states: {
-    fetchingTodos: {
-      invoke: {
-        src: async (_context, _event): Promise<TodoItem[]> => {
-          await waitForTimeout(1_000);
-
-          const initialTodos = [
-            {
-              id: generateId(),
-              label: "Clean my computer",
-              checked: false,
-            },
-            {
-              id: generateId(),
-              label: "Buy a keyboard",
-              checked: false,
-            },
-            {
-              id: generateId(),
-              label: "Write an article about @xtate/test",
-              checked: true,
-            },
-          ];
-
-          return initialTodos;
-        },
-
-        onDone: {
-          target: "idle",
-
-          actions: assign({
-            todos: (_context, event: DoneInvokeEvent<TodoItem[]>) => {
-              const { data: todos } = event;
-
-              return todos;
-            },
-          }),
-        },
-      },
-    },
-
-    idle: {
-      on: {
-        CREATE_TODO: {
-          target: "creatingTodo",
-        },
-      },
-    },
-
-    creatingTodo: {
-      tags: "showTodoCreationForm",
-
-      on: {
-        CLOSE_TODO_CREATION: {
-          target: "idle",
-        },
-
-        SAVE_TODO: {
-          target: "idle",
-
-          actions: todoModel.assign({
-            todos: ({ todos }, { todo }) => [
-              ...todos,
-              {
-                id: nanoid(),
-                label: todo,
-                checked: false,
-              },
-            ],
-          }),
-        },
-      },
-    },
-  },
-
-  on: {
-    UPDATE_TODO_STATUS: {
-      actions: todoModel.assign({
+      updateTodoStatus: assign({
         todos: ({ todos }, { id: todoToUpdateId, checked }) =>
           todos.map((todo) => {
             if (todo.id !== todoToUpdateId) {
@@ -131,5 +149,5 @@ export const todosMachine = todoModel.createMachine({
           }),
       }),
     },
-  },
-});
+  }
+);
