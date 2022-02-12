@@ -3,44 +3,22 @@
 export interface Typegen0 {
   "@@xstate/typegen": true;
   eventsCausingActions: {
-    assignInitialTodosToContext: "done.invoke.fetchTodos";
-    assignNewTodoToContext: "SAVE_TODO";
-    assignTodoStatusUpdateToContext: "UPDATE_TODO_STATUS";
+    "Assign initial todos to context": "done.invoke.todos.Fetching todos:invocation[0]";
+    "Assign new todo to context": "Save todo";
+    "Assign todo status update to context": "Update todo status";
   };
   internalEvents: {
-    "done.invoke.fetchTodos": {
-      type: "done.invoke.fetchTodos";
+    "done.invoke.todos.Fetching todos:invocation[0]": {
+      type: "done.invoke.todos.Fetching todos:invocation[0]";
       data: unknown;
       __tip: "See the XState TS docs to learn how to strongly type this.";
     };
     "xstate.init": { type: "xstate.init" };
-    "error.platform.fetchTodos": {
-      type: "error.platform.fetchTodos";
-      data: unknown;
-    };
-    "done.invoke.sendTodoToServer": {
-      type: "done.invoke.sendTodoToServer";
-      data: unknown;
-      __tip: "See the XState TS docs to learn how to strongly type this.";
-    };
-    "error.platform.sendTodoToServer": {
-      type: "error.platform.sendTodoToServer";
-      data: unknown;
-    };
-    "done.invoke.sendToServer": {
-      type: "done.invoke.sendToServer";
-      data: unknown;
-      __tip: "See the XState TS docs to learn how to strongly type this.";
-    };
-    "error.platform.sendToServer": {
-      type: "error.platform.sendToServer";
-      data: unknown;
-    };
   };
   invokeSrcNameMap: {
-    fetchTodos: "done.invoke.fetchTodos";
-    sendNewTodoToServer: "done.invoke.sendTodoToServer";
-    sendTodoStatusUpdateToServer: "done.invoke.sendToServer";
+    "Fetch todos": "done.invoke.todos.Fetching todos:invocation[0]";
+    "Send new todo to server": "done.invoke.todos.Todos management.Todos creation.Creating a todo.Sending new todo to server:invocation[0]";
+    "Send todo status update to server": "done.invoke.todos.Todos management.Updating todos.Sending todo status update to server:invocation[0]";
   };
   missingImplementations: {
     actions: never;
@@ -49,40 +27,42 @@ export interface Typegen0 {
     delays: never;
   };
   eventsCausingServices: {
-    fetchTodos: "xstate.init";
-    sendNewTodoToServer: "SAVE_TODO";
-    sendTodoStatusUpdateToServer: "UPDATE_TODO_STATUS";
+    "Fetch todos": "xstate.init";
+    "Send new todo to server": "Save todo";
+    "Send todo status update to server": "Update todo status";
   };
   eventsCausingGuards: {};
   eventsCausingDelays: {};
   matchesStates:
-    | "fetchingTodos"
-    | "todosManagement"
-    | "todosManagement.todosCreation"
-    | "todosManagement.todosCreation.idle"
-    | "todosManagement.todosCreation.creatingTodo"
-    | "todosManagement.todosCreation.creatingTodo.waitingTodoCreation"
-    | "todosManagement.todosCreation.creatingTodo.sendingNewTodoToServer"
-    | "todosManagement.todosCreation.creatingTodo.sentNewTodoToServer"
-    | "todosManagement.updatingTodos"
-    | "todosManagement.updatingTodos.idle"
-    | "todosManagement.updatingTodos.sendingTodoStatusUpdateToServer"
+    | "Fetching todos"
+    | "Todos management"
+    | "Todos management.Todos creation"
+    | "Todos management.Todos creation.Idle"
+    | "Todos management.Todos creation.Creating a todo"
+    | "Todos management.Todos creation.Creating a todo.Waiting for todo creation"
+    | "Todos management.Todos creation.Creating a todo.Sending new todo to server"
+    | "Todos management.Todos creation.Creating a todo.Sent new todo to server"
+    | "Todos management.Updating todos"
+    | "Todos management.Updating todos.Idle"
+    | "Todos management.Updating todos.Sending todo status update to server"
     | {
-        todosManagement?:
-          | "todosCreation"
-          | "updatingTodos"
+        "Todos management"?:
+          | "Todos creation"
+          | "Updating todos"
           | {
-              todosCreation?:
-                | "idle"
-                | "creatingTodo"
+              "Todos creation"?:
+                | "Idle"
+                | "Creating a todo"
                 | {
-                    creatingTodo?:
-                      | "waitingTodoCreation"
-                      | "sendingNewTodoToServer"
-                      | "sentNewTodoToServer";
+                    "Creating a todo"?:
+                      | "Waiting for todo creation"
+                      | "Sending new todo to server"
+                      | "Sent new todo to server";
                   };
-              updatingTodos?: "idle" | "sendingTodoStatusUpdateToServer";
+              "Updating todos"?:
+                | "Idle"
+                | "Sending todo status update to server";
             };
       };
-  tags: "showTodoCreationForm" | "isSendingRequestToServer";
+  tags: "show todo creation form" | "is sending request to server";
 }

@@ -92,9 +92,9 @@ function CreateTodoForm({
 const Home: NextPage = () => {
   const [state, send] = useMachine(todosMachine);
 
-  const isLoadingInitialTodos = state.matches("fetchingTodos");
-  const showTodoCreationForm = state.hasTag("showTodoCreationForm");
-  const isSendingRequestToServer = state.hasTag("isSendingRequestToServer");
+  const isLoadingInitialTodos = state.matches("Fetching todos");
+  const showTodoCreationForm = state.hasTag("show todo creation form");
+  const isSendingRequestToServer = state.hasTag("is sending request to server");
   const thingsToDo = state.context.todos.filter(
     ({ checked }) => checked === false
   );
@@ -104,26 +104,26 @@ const Home: NextPage = () => {
 
   function handleOpenTodoCreation() {
     send({
-      type: "CREATE_TODO",
+      type: "Create todo",
     });
   }
 
   function handleCloseTodoCreation() {
     send({
-      type: "CLOSE_TODO_CREATION",
+      type: "Close todo creation",
     });
   }
 
   function handleSaveTodo(newTodo: string) {
     send({
-      type: "SAVE_TODO",
+      type: "Save todo",
       todo: newTodo,
     });
   }
 
   function handleTodoStatusUpdate(id: string, checked: boolean) {
     send({
-      type: "UPDATE_TODO_STATUS",
+      type: "Update todo status",
       id,
       checked: checked,
     });
