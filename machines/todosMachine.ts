@@ -157,7 +157,7 @@ export const todosMachine = createMachine(
           },
           {
             id: generateId(),
-            label: "Write an article about @xtate/test",
+            label: "Write an article about @xstate/test",
             checked: true,
           },
         ];
