@@ -92,7 +92,9 @@ function CreateTodoForm({
 const Home: NextPage = () => {
   const [state, send] = useMachine(todosMachine);
 
-  const isLoadingInitialTodos = state.matches("Fetching todos");
+  const shouldShowNothing = state.hasTag("render nothing");
+  const shouldShowLoadingIndicator = state.hasTag("show loading indicator");
+  const shouldShowErrorState = state.hasTag("show error state");
   const showTodoCreationForm = state.hasTag("show todo creation form");
   const isSendingRequestToServer = state.hasTag("is sending request to server");
   const thingsToDo = state.context.todos.filter(
@@ -144,55 +146,61 @@ const Home: NextPage = () => {
       </nav>
 
       <div className="py-10">
-        <header>
-          <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold leading-tight text-gray-900">
-              Things to get done
-            </h1>
-          </div>
-        </header>
+        {shouldShowNothing ? null : shouldShowErrorState ? (
+          <p>An error occured while fetching todos</p>
+        ) : (
+          <>
+            <header>
+              <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <h1 className="text-3xl font-bold leading-tight text-gray-900">
+                  Things to get done
+                </h1>
+              </div>
+            </header>
 
-        <main>
-          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="px-4 py-8 space-y-4 sm:px-0">
-              <CheckboxList
-                disableAllList={isSendingRequestToServer}
-                isLoading={isLoadingInitialTodos}
-                items={thingsToDo}
-                onCheckboxChange={handleTodoStatusUpdate}
-                title="Things to do"
-              />
-
-              {showTodoCreationForm === true ? (
-                <CreateTodoForm
-                  handleSaveTodo={handleSaveTodo}
-                  handleCloseTodoCreation={handleCloseTodoCreation}
-                />
-              ) : (
-                <button
-                  type="button"
-                  disabled={isSendingRequestToServer}
-                  className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-yellow-500 border border-transparent rounded-full shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-                  onClick={handleOpenTodoCreation}
-                >
-                  <PlusIcon
-                    className="-ml-0.5 mr-2 h-4 w-4"
-                    aria-hidden="true"
+            <main>
+              <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div className="px-4 py-8 space-y-4 sm:px-0">
+                  <CheckboxList
+                    disableAllList={isSendingRequestToServer}
+                    isLoading={shouldShowLoadingIndicator}
+                    items={thingsToDo}
+                    onCheckboxChange={handleTodoStatusUpdate}
+                    title="Things to do"
                   />
-                  Add a todo
-                </button>
-              )}
 
-              <CheckboxList
-                disableAllList={isSendingRequestToServer}
-                isLoading={isLoadingInitialTodos}
-                items={thingsDone}
-                onCheckboxChange={handleTodoStatusUpdate}
-                title="Things done"
-              />
-            </div>
-          </div>
-        </main>
+                  {showTodoCreationForm === true ? (
+                    <CreateTodoForm
+                      handleSaveTodo={handleSaveTodo}
+                      handleCloseTodoCreation={handleCloseTodoCreation}
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      disabled={isSendingRequestToServer}
+                      className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-yellow-500 border border-transparent rounded-full shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                      onClick={handleOpenTodoCreation}
+                    >
+                      <PlusIcon
+                        className="-ml-0.5 mr-2 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                      Add a todo
+                    </button>
+                  )}
+
+                  <CheckboxList
+                    disableAllList={isSendingRequestToServer}
+                    isLoading={shouldShowLoadingIndicator}
+                    items={thingsDone}
+                    onCheckboxChange={handleTodoStatusUpdate}
+                    title="Things done"
+                  />
+                </div>
+              </div>
+            </main>
+          </>
+        )}
       </div>
     </div>
   );

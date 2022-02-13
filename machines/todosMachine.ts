@@ -22,7 +22,7 @@ type Event =
   | { type: "Update todo status"; id: string; checked: boolean }
   | { type: "Save todo"; todo: string };
 
-/** @xstate-layout N4IgpgJg5mDOIC5QBcD2FWwHQDEzIGMALASwDsoACNDWAYgzLC3IDdUBrZmzXfY8lR6wEbVAQCGyEqjIBtAAwBdRKAAOmEtNmqQAD0QAmAGyGsxgOwAWAKxWAzDYs37CwzZsAaEAE9EATgBGc3djV39jCIAOK0MrAF9472EsABV0TEoAWwkyCRgssDJkNIzYSgIAJzApGTIsAEkIABswOgBhaqkwagzdDVgtOt0DBECbQ38sC0MFU38rBXt-G397bz8EVYssWdnTY3HAqOMoxOSy0tps3PywQuKrzKqa7XrO18FKCV6MLAB1CRDCiUABmqEqv1QFS6bzoAGUJKwejx+po3iNEIsrNM3B4bG4LP4FFZAhYNohjFYppZDPZ6bY3P4TOcQCl0tccnkCkUShznrC6lgPrUQT8eFh4UUIF8mAB3KG9SiwMCVZGVBiyZhiLhYdllG7c+68p7lF61WTCwViqGS6WysAKnhKlVq1WiMjsSRvRQqJAgAZDHT+0YrYxYRaGGL+CwKDxhikIWlYFyBcauGxRex0+ys-Wc248x78s2Cy0i6Q2niaphYWDIbp6y4lw13B58g3mt5Wz5Vvr+wMYkOIcaTab7SaLZarda+RAzHFUuxRQILKJrPPNg1ctsmltdoUVr7ijIdZqYFEZGGfYPqdHDYdjCZTGZzSdLFZrRPGYwKLDM+wLBmKNZkzBIkjZLcCyNdssAAVTUCBRSES4mlaOgEKQ5BLwwZUG2QABXeAB3vW99CMUldnsE5bCsYwbECexAjiRMY2CKI4gURjHEmCxV03WhTVbIsSkw5CoWwKUyBlEFnXrKQiMoAjEO6F1VXVGttU9ThuCgzIdxE+CVMrFDBKkmTTOheTCPKZSsMvZV1PdMRvTqX00UGIdQFGOJgjpGi7HoxjmKsViFCiLBAjcWJ7B-OLwsSCCyHQOBdBSPBCFIWSyg8oMyExBBYjC-9iROYLlhWPiBN4FsDONYtOzLeo0LAXKvPIsYLHsHEojmEljisCx5lnTYfxsXZ11XJdo1MarsFqwt6o7a4D3La0qBPP5AWBKhwUhZ1VvykjPIfbyR0G79rCwZYgoXKwrBXOahLq2D9yantxM21A7Wkh0nSvNBHLdSo2tOjqgt2fEImJAkFAUfxv2pLAlmcMIiTo-qnoWmC90am93nW75bSk5BKHlRVAdddVQbI0YQvsa6sxXB6hpWbNLpxG6GLuh7Aix7dFtevGLQJ3sNqhGmjrOsY6UTJxwxJSxot638ohsfnoN3BqVqayWCv8BG5y2JZkY8GI0zi5izgg-N9MFk0xJMiTGhaVrjrygq03JI3-BOaZAlMWxszXNMNbtnHHkdr4UnM6Or2sxS7NUymnJB932tGGdkaiKJY1CNWTkMViPAjElqK6rMePAi5BOxrXROMuPaD1x8vyNrNxrTcZTB4saw-KF7eRb6XIkTBw-zmakiTVkwyT5m2cvTsG6aiRNjkS+IgA */
+/** @xstate-layout N4IgpgJg5mDOIC5QBcD2FWwHQDEzIGMALASwDsoACNDbAdQEMTlyoBiAD1mQeTCwYAzPgCcsARgAM0xKAAOmZiVRlZIDogBM4zVgCckgMwAOAGwBWU4fOaALAHZxtgDQgAnomObde8+fHmxraGwbY2AL7hrjSYuPjErNTomGwYZPzkAG6oANb8Mdh4hKQUSbQIWagEvMpkANqSALpqCrBKKmoaCBbmWJqSxnrW5ob2xlLmrh4ItpLiWKOStpqmy362XpHRyYXxJVQFbGAiIqhicgA2vIJnALZYBXHFiQUVZNnVLCoNzUggre1VH8uj0+gMhn5RuNJJN3J5RgtvIYLJJHIMwlsQI8iglSocuDw+AJhMcFtJJC1FF8gaAQX4wYNhlCJlNEPZ7IYsKZpPYwvZ-IFgpjHgAVHaUW4MMgMGC3MBkZBYMW0SgEERgGoqLAASQgFzAbAAwureGAyqhKW1qZ0tCZ7H1TEE9M7-N5xPZWQhNPZTBJvXoOT7gu7rMKdkrxZLpbL5YrlZhVSbqVhjRqWKUGOasIwlKUbiJzYm07U2ABlBiZM0xS2Am0IHSmXSacxGWymPRmQyaT1d4xYcwd7w9Xmrcxh2gRlVRmVgOUKycJtXFrWpmoZrOl+UQRLpADuhbQlFgx0rIlSKgy71y+XD8dgEqlM7ncfFS81ZBTScSmZiWE3ZG3Uo9wPVAjxPY43g+d8fhra1gUQcRxk5XxJFMexvE0FDHR7fwsDCdsgm9DZENscdYjvB9o1nWMF3vN9k1XdMqB-ZJz3SLBuFNB5b0jR8Y3nCj6NqT9i3Xas-gBODaVtYx7RWJ0XR0bQPThGYjH7RwQmMAcDG02SyOwCjp34l8VSElcvzE1jDQuTAq2SIt31g2o600O0HQU3wlPdHtDD0LAnVMUxxEQ905lMAzaMop8aIAVTkCA1wOcNdX1Nh4sSvhC045AAFd4AkqkXPg+tJA7LAxlWd1bF8IKfNUlEKpbGEzCkIJBkioy+Oo+cMqS81sH-QDkowI9CXyyhcoS00kjAkRTzYy9sjybiJy6qjnywPqmIGv8txeBycomqbMvsubT0gqpoKaZyOhKqRysq2xqtq4KVOmQJ7UkTRjFGEKhjbNtIiiEAyHQOA1GxPYDonHMmNuml1DZbtVK8WwAv6EZDCcFZHWMSKcX2XbSyIVB91shhhsocht0+M4EbrExJD6cQA15bRgqC7TPTRjGlgDfpmzbQwCehvEdgZkqNk9dt-LsKxDEMVDjC8RXOt4jaaMEr8tVSsBJekr0B10aw7UsVEB2RHtbHR7R-CMDt7DKvRxAikHRQ1mKBNfHWP0Y78szhxJ80LczEck4rDakJZ+wcdkBcDGwcM5Ls7G9AZvoCPQ3e2NbPZMqKw5E-qWIwPaAJ3MB9xiWbj3m44DaR+sWz7YxW2sFWWrbHtvX0KxnpGHkapzrEeKnbrNu15c-cs5iN1jShgJrw869PRuum0aR9GxtDeT8sqUemU3ETTp227t7P1fHzXvbM33i520uLUKq1I6bjtmfMOP7AT0Yk9UoW+h0IOGsK7IIAQxzuzHgmYyPVTKLl9uvRAtVY7sh-uhROh8ELjH0OMNC7opDNjcnoK+MCJ5xWmjtR4eskEIADOjL+aDf78iwd0CwXJlhhBVl2Fs2hSH3lgZtbaMNYhDREWNXgx1KFnVXg3F+tZ7phGZlYCw4gTBhA2LCaY-cFhKyxnoIcfJ+HRQLsI8WtBaEoVQfHDBf9WH+HRkYdmehZi+EsCPD218vbIEsSsax6DvR2M9G1fQBh0LOhWCEYIJCoETgAKInEgJQQQYsRqYFodpdGjgbBuSCGhaQxgeZKwkIMFYThGwuLKgZWhdgcKhI7Nyb68kQo+mBuEIAA */
 export const todosMachine = createMachine(
   {
     context: { todos: [] },
@@ -54,7 +54,34 @@ export const todosMachine = createMachine(
               target: "#todos.Todos management",
             },
           ],
+          onError: [
+            {
+              target: "#todos.Erred fetching todos",
+            },
+          ],
         },
+        initial: "Waiting",
+        after: {
+          "3000": {
+            target: "#todos.Erred fetching todos",
+          },
+        },
+        states: {
+          Waiting: {
+            tags: "render nothing",
+            after: {
+              "1000": {
+                target: "#todos.Fetching todos.Show loading indicator",
+              },
+            },
+          },
+          "Show loading indicator": {
+            tags: "show loading indicator",
+          },
+        },
+      },
+      "Erred fetching todos": {
+        tags: "show error state",
       },
       "Todos management": {
         type: "parallel",

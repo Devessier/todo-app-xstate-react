@@ -35,6 +35,9 @@ export interface Typegen0 {
   eventsCausingDelays: {};
   matchesStates:
     | "Fetching todos"
+    | "Fetching todos.Waiting"
+    | "Fetching todos.Show loading indicator"
+    | "Erred fetching todos"
     | "Todos management"
     | "Todos management.Todos creation"
     | "Todos management.Todos creation.Idle"
@@ -46,6 +49,7 @@ export interface Typegen0 {
     | "Todos management.Updating todos.Idle"
     | "Todos management.Updating todos.Sending todo status update to server"
     | {
+        "Fetching todos"?: "Waiting" | "Show loading indicator";
         "Todos management"?:
           | "Todos creation"
           | "Updating todos"
@@ -64,5 +68,10 @@ export interface Typegen0 {
                 | "Sending todo status update to server";
             };
       };
-  tags: "show todo creation form" | "is sending request to server";
+  tags:
+    | "render nothing"
+    | "show loading indicator"
+    | "show error state"
+    | "show todo creation form"
+    | "is sending request to server";
 }
