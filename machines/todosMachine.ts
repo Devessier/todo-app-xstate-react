@@ -22,7 +22,7 @@ type Event =
   | { type: "Update todo status"; id: string; checked: boolean }
   | { type: "Save todo"; todo: string };
 
-/** @xstate-layout N4IgpgJg5mDOIC5QBcD2FWwHQDEzIGMALASwDsoACNDbAdQEMTlyoBiAD1mQeTCwYAzPgCcsARgAM0xKAAOmZiVRlZIDogBM4zVgCckgMwAOAGwBWU4fOaALAHZxtgDQgAnomObde8+fHmxraGwbY2AL7hrjSYuPjErNTomGwYZPzkAG6oANb8Mdh4hKQUSbQIWagEvMpkANqSALpqCrBKKmoaCBbmWJqSxnrW5ob2xlLmrh4ItpLiWKOStpqmy362XpHRyYXxJVQFbGAiIqhicgA2vIJnALZYBXHFiQUVZNnVLCoNzUggre1VH8uj0+gMhn5RuNJJN3J5RgtvIYLJJHIMwlsQI8iglSocuDw+AJhMcFtJJC1FF8gaAQX4wYNhlCJlNEPZ7IYsKZpPYwvZ-IFgpjHgAVHaUW4MMgMGC3MBkZBYMW0SgEERgGoqLAASQgFzAbAAwureGAyqhKW1qZ0tCZ7H1TEE9M7-N5xPZWQhNPZTBJvXoOT7gu7rMKdkrxZLpbL5YrlZhVSbqVhjRqWKUGOasIwlKUbiJzYm07U2ABlBiZM0xS2Am0IHSmXSacxGWymPRmQyaT1d4xYcwd7w9Xmrcxh2gRlVRmVgOUKycJtXFrWpmoZrOl+UQRLpADuhbQlFgx0rIlSKgy71y+XD8dgEqlM7ncfFS81ZBTScSmZiWE3ZG3Uo9wPVAjxPY43g+d8fhra1gUQcRxk5XxJFMexvE0FDHR7fwsDCdsgm9DZENscdYjvB9o1nWMF3vN9k1XdMqB-ZJz3SLBuFNB5b0jR8Y3nCj6NqT9i3Xas-gBODaVtYx7RWJ0XR0bQPThGYjH7RwQmMAcDG02SyOwCjp34l8VSElcvzE1jDQuTAq2SIt31g2o600O0HQU3wlPdHtDD0LAnVMUxxEQ905lMAzaMop8aIAVTkCA1wOcNdX1Nh4sSvhC045AAFd4AkqkXPg+tJA7LAxlWd1bF8IKfNUlEKpbGEzCkIJBkioy+Oo+cMqS81sH-QDkowI9CXyyhcoS00kjAkRTzYy9sjybiJy6qjnywPqmIGv8txeBycomqbMvsubT0gqpoKaZyOhKqRysq2xqtq4KVOmQJ7UkTRjFGEKhjbNtIiiEAyHQOA1GxPYDonHMmNuml1DZbtVK8WwAv6EZDCcFZHWMSKcX2XbSyIVB91shhhsocht0+M4EbrExJD6cQA15bRgqC7TPTRjGlgDfpmzbQwCehvEdgZkqNk9dt-LsKxDEMVDjC8RXOt4jaaMEr8tVSsBJekr0B10aw7UsVEB2RHtbHR7R-CMDt7DKvRxAikHRQ1mKBNfHWP0Y78szhxJ80LczEck4rDakJZ+wcdkBcDGwcM5Ls7G9AZvoCPQ3e2NbPZMqKw5E-qWIwPaAJ3MB9xiWbj3m44DaR+sWz7YxW2sFWWrbHtvX0KxnpGHkapzrEeKnbrNu15c-cs5iN1jShgJrw869PRuum0aR9GxtDeT8sqUemU3ETTp227t7P1fHzXvbM33i520uLUKq1I6bjtmfMOP7AT0Yk9UoW+h0IOGsK7IIAQxzuzHgmYyPVTKLl9uvRAtVY7sh-uhROh8ELjH0OMNC7opDNjcnoK+MCJ5xWmjtR4eskEIADOjL+aDf78iwd0CwXJlhhBVl2Fs2hSH3lgZtbaMNYhDREWNXgx1KFnVXg3F+tZ7phGZlYCw4gTBhA2LCaY-cFhKyxnoIcfJ+HRQLsI8WtBaEoVQfHDBf9WH+HRkYdmehZi+EsCPD218vbIEsSsax6DvR2M9G1fQBh0LOhWCEYIJCoETgAKInEgJQQQYsRqYFodpdGjgbBuSCGhaQxgeZKwkIMFYThGwuLKgZWhdgcKhI7Nyb68kQo+mBuEIAA */
+/** @xstate-layout N4IgpgJg5mDOIC5QBcD2FWwHQDEzIGMALASwDsoACNDbAdQEMTlyoBiAD1mQeTCwYAzPgCcAFAEYADDICUbGplz5irauiWNmrRKAAOmbajK6QHRAFoA7ABYsEiQFZHEgJwOpADgBMAZiueADQgAJ6IElZWWD7eno7e7q623jaOAL5pwYrYeISkFOq0bBhk-OQAbqgA1vzZynlq2QgVqAS8JMYA2lIAuqYGsEYmSGaINla+0QBsNl42U1JTvp7jwWEIvg5YvjY2vlPe3o6uvlKxGVkaOSr5VNlsYCIiqCJYegA2vIIvALZYdblVAUmi02iwur1+oZwcNQOYEBJvBJ7K5PL5vFNHD4bK4bBJfGtEC5JvEXLiplMrO4KRcQACbo0rpxuLx+EJRGJTnIFFd6kC7lcoYMYaZ4RYHK4sK5KbtZlIIgqCaExgkpeMkc4ZEclrS6gAVK6UH4MMgMGA-MBkZBYA20SgEERgdrGLAASQg7zAbAAwo7WYVUEKhqLEEkotKMa4ZAclhJCQjpFgZPFfFjfP4pO50pk6bzbZgjSazWALVabYaHU6YVhfVW1AwA1gtCwCt8RAH7X6YWwAMoMcpgANBkUjeFOKaSo6eCSeBZTaRIqzxyPRVyaxzy0m+XV5w3G03my3W-OwTt1l219oFBuKLA9y0QNSlADuHbQlFgjwHImKxjKZEqGp-l3O192LUtjwrLsOjIGtoOvRt7zIR8ChfN9UA-L9HmaADWmdMhuj6EYBmDUdEEOKxkWcaVIgkGYZymZdPElU55kSVxvHlCYd1octQKLQ8yxPM98LgusEMUX9SiwFk+GA3jhLAwTILtStRMvFsqBvDRhxgkMEFcKMsEcHF5gWKdHEo5cZmiTM-GnSIJg4nilEUgSSyPPiCzU6sNPrAMfXeTBB0UESR30aE9LIgyXCwClIjRccnEzeNZmRJI1ysLFdkcfYVhc7A3IPDyywAVT0CArwFXj3U9NhysqvgO1kgBXeBiMi4x9OkWKfB2aR5V8JJcvjKwpEcewHBxDFZWWKYCq808lJK60GqqgNsCQlDqow1rTxair-XfT8RG-KT-0A2oQILZaIKwNbNI2u8H0ZDAPx4ZA2soA7GpC3asJEHDKjBGDCN0rrooXTxjMojEziyhxGOVBADmho4huOCc6MiVwMhzMh0DgUx6QaYFeWbHQOuFKK4UsTYpCwFJZTXKRUxkOj4wVew4h8RFcqkPFxgWwFbiensiFQV8goYbbKHIR8wRecHYVGBFmKwVJOMWNwdlZqxvE5yjuaxWJ8WTE5PGFhkydoZX9IsdM7CZ3YWbZ+UkfWcYNasCcsoOcZxikKwFoAUSeSBKEEa2dvaiLqYh2mEAsDFw3mZiKW19FdnjLF0uxykAj8aRLZzfU93cu7hJ8mC3Q9MA7eitFvClfFNmOTxM1sRxlyxex9b8Jm3FmYPS+upaK88qvoIveCtMbCnWxeDtq4TkASPC1XEVTaJHAWGcAhoxEmOb+KKXcfZdnTbNLgU8visrqDz1gvyJI0Z7kKfMBX1C46AYbxO3CsylBSJwHE4j+BsD3KIpxZznyGvrRYI8b6uTvuBSej91Kz0oNpDA79kCUDQj-f6p1Hj-1VhiCIjN8QpBnP1BYS5kaxBPpSKYs5tRIk8D7BaRU0FCQwb5LBODAxU1IgApEyI4h704enWGnMVjbAiAEfwDg6KpG4ag5Si0wo0zXp1FW8IO7QzgaAjuSRUjxn8EmCQewO7iMsj7a+uZb78Xvp5B6r0lC1XriIjeBj0Qt11nAhIHF4yYgZqbOITgfC2CGuolxvDVqHUenULaHj3q8C+j9I6xDvxkLHHsKY0QFzxBjLvCYoSUhSkOCcHEqJPDYjiTdCeZUkkeNjro+O+jECGICbMIJhkDbI2cOldEZt97FxsI08erirR5MQAEOwxj26d3McjB2E0kiYgxIcTMU1Jmj1tj4nRYpUxo1lDiDcbsOZrOLsA2wA1KLyhOCPDIQA */
 export const todosMachine = createMachine(
   {
     context: { todos: [] },
@@ -51,19 +51,19 @@ export const todosMachine = createMachine(
           onDone: [
             {
               actions: "Assign initial todos to context",
-              target: "#todos.Todos management",
+              target: "Todos management",
             },
           ],
           onError: [
             {
-              target: "#todos.Erred fetching todos",
+              target: "Erred fetching todos",
             },
           ],
         },
         initial: "Waiting",
         after: {
           "3000": {
-            target: "#todos.Erred fetching todos",
+            target: "Erred fetching todos",
           },
         },
         states: {
@@ -71,7 +71,7 @@ export const todosMachine = createMachine(
             tags: "render nothing",
             after: {
               "1000": {
-                target: "#todos.Fetching todos.Show loading indicator",
+                target: "Show loading indicator",
               },
             },
           },
@@ -92,8 +92,7 @@ export const todosMachine = createMachine(
               Idle: {
                 on: {
                   "Create todo": {
-                    target:
-                      "#todos.Todos management.Todos creation.Creating a todo",
+                    target: "Creating a todo",
                   },
                 },
               },
@@ -105,22 +104,20 @@ export const todosMachine = createMachine(
                     on: {
                       "Save todo": {
                         actions: "Assign new todo to context",
-                        target:
-                          "#todos.Todos management.Todos creation.Creating a todo.Sending new todo to server",
+                        target: "Sending new todo to server",
                       },
                     },
                   },
                   "Sending new todo to server": {
-                    tags: "is sending request to server",
                     invoke: {
                       src: "Send new todo to server",
                       onDone: [
                         {
-                          target:
-                            "#todos.Todos management.Todos creation.Creating a todo.Sent new todo to server",
+                          target: "Sent new todo to server",
                         },
                       ],
                     },
+                    tags: "is sending request to server",
                   },
                   "Sent new todo to server": {
                     type: "final",
@@ -128,11 +125,11 @@ export const todosMachine = createMachine(
                 },
                 on: {
                   "Close todo creation": {
-                    target: "#todos.Todos management.Todos creation.Idle",
+                    target: "Idle",
                   },
                 },
                 onDone: {
-                  target: "#todos.Todos management.Todos creation.Idle",
+                  target: "Idle",
                 },
               },
             },
@@ -144,21 +141,20 @@ export const todosMachine = createMachine(
                 on: {
                   "Update todo status": {
                     actions: "Assign todo status update to context",
-                    target:
-                      "#todos.Todos management.Updating todos.Sending todo status update to server",
+                    target: "Sending todo status update to server",
                   },
                 },
               },
               "Sending todo status update to server": {
-                tags: "is sending request to server",
                 invoke: {
                   src: "Send todo status update to server",
                   onDone: [
                     {
-                      target: "#todos.Todos management.Updating todos.Idle",
+                      target: "Idle",
                     },
                   ],
                 },
+                tags: "is sending request to server",
               },
             },
           },
