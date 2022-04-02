@@ -134,7 +134,9 @@ const Home: NextPage = () => {
   }
 
   function handleRefreshTodos() {
-    // TODO: Send event to the machine
+    send({
+      type: "Refresh todos",
+    });
   }
 
   useKey("Escape", handleCloseTodoCreation);
