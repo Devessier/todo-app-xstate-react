@@ -100,5 +100,6 @@ export interface Typegen0 {
     | "show loading indicator"
     | "show error state"
     | "show todo creation form"
-    | "is sending request to server";
+    | "is sending request to server"
+    | "is refreshing todos";
 }

@@ -98,7 +98,7 @@ const Home: NextPage = () => {
   const shouldShowErrorState = state.hasTag("show error state");
   const showTodoCreationForm = state.hasTag("show todo creation form");
   const isSendingRequestToServer = state.hasTag("is sending request to server");
-  const isRefetchingTodos = false as boolean;
+  const isRefetchingTodos = state.hasTag("is refreshing todos");
   const thingsToDo = state.context.todos.filter(
     ({ checked }) => checked === false
   );

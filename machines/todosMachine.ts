@@ -178,6 +178,7 @@ export const todosMachine = createMachine(
                 },
               },
               "Refetching todos": {
+                tags: "is refreshing todos",
                 invoke: {
                   src: "Refetch todos",
                   onDone: {
