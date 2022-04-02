@@ -51,7 +51,7 @@ export const todosMachine = createMachine(
           onDone: [
             {
               actions: "Assign initial todos to context",
-              target: "Todos management",
+              target: "Fetched initial todos",
             },
           ],
           onError: [
@@ -83,78 +83,83 @@ export const todosMachine = createMachine(
       "Erred fetching todos": {
         tags: "show error state",
       },
-      "Todos management": {
+      "Fetched initial todos": {
         type: "parallel",
         states: {
-          "Todos creation": {
-            initial: "Idle",
+          "Todos management": {
+            type: "parallel",
             states: {
-              Idle: {
-                on: {
-                  "Create todo": {
-                    target: "Creating a todo",
-                  },
-                },
-              },
-              "Creating a todo": {
-                tags: "show todo creation form",
-                initial: "Waiting for todo creation",
+              "Todos creation": {
+                initial: "Idle",
                 states: {
-                  "Waiting for todo creation": {
+                  Idle: {
                     on: {
-                      "Save todo": {
-                        target: "Sending new todo to server",
+                      "Create todo": {
+                        target: "Creating a todo",
                       },
                     },
                   },
-                  "Sending new todo to server": {
+                  "Creating a todo": {
+                    tags: "show todo creation form",
+                    initial: "Waiting for todo creation",
+                    states: {
+                      "Waiting for todo creation": {
+                        on: {
+                          "Save todo": {
+                            target: "Sending new todo to server",
+                          },
+                        },
+                      },
+                      "Sending new todo to server": {
+                        invoke: {
+                          src: "Send new todo to server",
+                          onDone: [
+                            {
+                              actions: "Assign new todo to context",
+                              target: "Sent new todo to server",
+                            },
+                          ],
+                        },
+                        tags: "is sending request to server",
+                      },
+                      "Sent new todo to server": {
+                        type: "final",
+                      },
+                    },
+                    on: {
+                      "Close todo creation": {
+                        target: "Idle",
+                      },
+                    },
+                    onDone: {
+                      target: "Idle",
+                    },
+                  },
+                },
+              },
+              "Updating todos": {
+                initial: "Idle",
+                states: {
+                  Idle: {
+                    on: {
+                      "Update todo status": {
+                        actions: "Assign todo status update to context",
+                        target: "Sending todo status update to server",
+                      },
+                    },
+                  },
+                  "Sending todo status update to server": {
                     invoke: {
-                      src: "Send new todo to server",
+                      src: "Send todo status update to server",
                       onDone: [
                         {
-                          actions: "Assign new todo to context",
-                          target: "Sent new todo to server",
+                          target: "Idle",
                         },
                       ],
                     },
                     tags: "is sending request to server",
                   },
-                  "Sent new todo to server": {
-                    type: "final",
-                  },
                 },
-                on: {
-                  "Close todo creation": {
-                    target: "Idle",
-                  },
-                },
-                onDone: {
-                  target: "Idle",
-                },
-              },
-            },
-          },
-          "Updating todos": {
-            initial: "Idle",
-            states: {
-              Idle: {
-                on: {
-                  "Update todo status": {
-                    actions: "Assign todo status update to context",
-                    target: "Sending todo status update to server",
-                  },
-                },
-              },
-              "Sending todo status update to server": {
-                invoke: {
-                  src: "Send todo status update to server",
-                  onDone: [
-                    {
-                      target: "Idle",
-                    },
-                  ],
-                },
-                tags: "is sending request to server",
               },
             },
           },
