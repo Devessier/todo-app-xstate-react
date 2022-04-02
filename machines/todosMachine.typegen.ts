@@ -6,6 +6,7 @@ export interface Typegen0 {
     "Assign initial todos to context": "done.invoke.todos.Fetching todos:invocation[0]";
     "Assign new todo to context": "done.invoke.todos.Fetched initial todos.Todos management.Todos creation.Creating a todo.Sending new todo to server:invocation[0]";
     "Assign todo status update to context": "Update todo status";
+    "Assign refreshed todos to context": "done.invoke.todos.Fetched initial todos.Refreshing todos.Refetching todos:invocation[0]";
   };
   internalEvents: {
     "done.invoke.todos.Fetching todos:invocation[0]": {
@@ -18,6 +19,11 @@ export interface Typegen0 {
       data: unknown;
       __tip: "See the XState TS docs to learn how to strongly type this.";
     };
+    "done.invoke.todos.Fetched initial todos.Refreshing todos.Refetching todos:invocation[0]": {
+      type: "done.invoke.todos.Fetched initial todos.Refreshing todos.Refetching todos:invocation[0]";
+      data: unknown;
+      __tip: "See the XState TS docs to learn how to strongly type this.";
+    };
     "xstate.init": { type: "xstate.init" };
   };
   invokeSrcNameMap: {
@@ -27,7 +33,7 @@ export interface Typegen0 {
     "Refetch todos": "done.invoke.todos.Fetched initial todos.Refreshing todos.Refetching todos:invocation[0]";
   };
   missingImplementations: {
-    actions: never;
+    actions: "Assign refreshed todos to context";
     services: "Refetch todos";
     guards: never;
     delays: never;

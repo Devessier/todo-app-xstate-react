@@ -182,6 +182,7 @@ export const todosMachine = createMachine(
                   src: "Refetch todos",
                   onDone: {
                     target: "Idle",
+                    actions: "Assign refreshed todos to context",
                   },
                   onError: {
                     target: "Failed to fetch todos",
