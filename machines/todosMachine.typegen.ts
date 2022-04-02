@@ -24,10 +24,11 @@ export interface Typegen0 {
     "Fetch todos": "done.invoke.todos.Fetching todos:invocation[0]";
     "Send new todo to server": "done.invoke.todos.Fetched initial todos.Todos management.Todos creation.Creating a todo.Sending new todo to server:invocation[0]";
     "Send todo status update to server": "done.invoke.todos.Fetched initial todos.Todos management.Updating todos.Sending todo status update to server:invocation[0]";
+    "Refetch todos": "done.invoke.todos.Fetched initial todos.Refreshing todos.Refetching todos:invocation[0]";
   };
   missingImplementations: {
     actions: never;
-    services: never;
+    services: "Refetch todos";
     guards: never;
     delays: never;
   };
@@ -35,6 +36,7 @@ export interface Typegen0 {
     "Fetch todos": "xstate.init";
     "Send new todo to server": "Save todo";
     "Send todo status update to server": "Update todo status";
+    "Refetch todos": "Refresh todos";
   };
   eventsCausingGuards: {};
   eventsCausingDelays: {};
@@ -54,10 +56,15 @@ export interface Typegen0 {
     | "Fetched initial todos.Todos management.Updating todos"
     | "Fetched initial todos.Todos management.Updating todos.Idle"
     | "Fetched initial todos.Todos management.Updating todos.Sending todo status update to server"
+    | "Fetched initial todos.Refreshing todos"
+    | "Fetched initial todos.Refreshing todos.Idle"
+    | "Fetched initial todos.Refreshing todos.Refetching todos"
+    | "Fetched initial todos.Refreshing todos.Failed to fetch todos"
     | {
         "Fetching todos"?: "Waiting" | "Show loading indicator";
         "Fetched initial todos"?:
           | "Todos management"
+          | "Refreshing todos"
           | {
               "Todos management"?:
                 | "Todos creation"
@@ -76,6 +83,10 @@ export interface Typegen0 {
                       | "Idle"
                       | "Sending todo status update to server";
                   };
+              "Refreshing todos"?:
+                | "Idle"
+                | "Refetching todos"
+                | "Failed to fetch todos";
             };
       };
   tags:
