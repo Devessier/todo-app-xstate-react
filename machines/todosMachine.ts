@@ -228,6 +228,19 @@ export const todosMachine = createMachine(
         return initialTodos;
       },
 
+      "Refetch todos": async (context): Promise<TodoItem[]> => {
+        await waitForTimeout(1_000);
+
+        return [
+          ...context.todos,
+          {
+            id: generateId(),
+            label: "Todo created by another user",
+            checked: true,
+          },
+        ];
+      },
+
       "Send new todo to server": async (
         _context,
         { todo: todoLabel }
@@ -255,6 +268,14 @@ export const todosMachine = createMachine(
 
     actions: {
       "Assign initial todos to context": assign({
+        todos: (_context, event) => {
+          const { data: todos } = event;
+
+          return todos;
+        },
+      }),
+
+      "Assign refreshed todos to context": assign({
         todos: (_context, event) => {
           const { data: todos } = event;
 
