@@ -22,7 +22,7 @@ type Event =
   | { type: "Update todo status"; id: string; checked: boolean }
   | { type: "Save todo"; todo: string };
 
-/** @xstate-layout N4IgpgJg5mDOIC5QBcD2FWwHQDEzIGMALASwDsoACNDbAdQEMTlyoBiAD1mQeTCwYAzPgCcAFAEYADDICUbGplz5irauiWNmrRKAAOmbajK6QHRAFoA7ABYsEiQFZHEgJwOpADgBMAZiueADQgAJ6IElZWWD7eno7e7q623jaOAL5pwYrYeISkFOq0bBhk-OQAbqgA1vzZynlq2QgVqAS8JMYA2lIAuqYGsEYmSGaINla+0QBsNl42U1JTvp7jwWEIvg5YvjY2vlPe3o6uvlKxGVkaOSr5VNlsYCIiqCJYegA2vIIvALZYdblVAUmi02iwur1+oZwcNQOYEBJvBJ7K5PL5vFNHD4bK4bBJfGtEC5JvEXLiplMrO4KRcQACbo0rpxuLx+EJRGJTnIFFd6kC7lcoYMYaZ4RYHK4sK5KbtZlIIgqCaExgkpeMkc4ZEclrS6gAVK6UH4MMgMGA-MBkZBYA20SgEERgdrGLAASQg7zAbAAwo7WYVUEKhqLEEkotKMa4ZAclhJCQjpFgZPFfFjfP4pO50pk6bzbZgjSazWALVabYaHU6YVhfVW1AwA1gtCwCt8RAH7X6YWwAMoMcpgANBkUjeFOKaSo6eCSeBZTaRIqzxyPRVyaxzy0m+XV5w3G03my3W-OwTt1l219oFBuKLA9y0QNSlADuHbQlFgjwHImKxjKZEqGp-l3O192LUtjwrLsOjIGtoOvRt7zIR8ChfN9UA-L9HmaADWmdMhuj6EYBmDUdEEOKxkWcaVIgkGYZymZdPElU55kSVxvHlCYd1octQKLQ8yxPM98LgusEMUX9SiwFk+GA3jhLAwTILtStRMvFsqBvDRhxgkMEFcKMsEcHF5gWKdHEo5cZmiTM-GnSIJg4nilEUgSSyPPiCzU6sNPrAMfXeTBB0UESR30aE9LIgyXCwClIjRccnEzeNZmRJI1ysLFdkcfYVhc7A3IPDyywAVT0CArwFXj3U9NhysqvgO1kgBXeBiMi4x9OkWKfB2aR5V8JJcvjKwpEcewHBxDFZWWKYCq808lJK60GqqgNsCQlDqow1rTxair-XfT8RG-KT-0A2oQILZaIKwNbNI2u8H0ZDAPx4ZA2soA7GpC3asJEHDKjBGDCN0rrooXTxjMojEziyhxGOVBADmho4huOCc6MiVwMhzMh0DgUx6QaYFeWbHQOuFKK4UsTYpCwFJZTXKRUxkOj4wVew4h8RFcqkPFxgWwFbiensiFQV8goYbbKHIR8wRecHYVGBFmKwVJOMWNwdlZqxvE5yjuaxWJ8WTE5PGFhkydoZX9IsdM7CZ3YWbZ+UkfWcYNasCcsoOcZxikKwFoAUSeSBKEEa2dvaiLqYh2mEAsDFw3mZiKW19FdnjLF0uxykAj8aRLZzfU93cu7hJ8mC3Q9MA7eitFvClfFNmOTxM1sRxlyxex9b8Jm3FmYPS+upaK88qvoIveCtMbCnWxeDtq4TkASPC1XEVTaJHAWGcAhoxEmOb+KKXcfZdnTbNLgU8visrqDz1gvyJI0Z7kKfMBX1C46AYbxO3CsylBSJwHE4j+BsD3KIpxZznyGvrRYI8b6uTvuBSej91Kz0oNpDA79kCUDQj-f6p1Hj-1VhiCIjN8QpBnP1BYS5kaxBPpSKYs5tRIk8D7BaRU0FCQwb5LBODAxU1IgApEyI4h704enWGnMVjbAiAEfwDg6KpG4ag5Si0wo0zXp1FW8IO7QzgaAjuSRUjxn8EmCQewO7iMsj7a+uZb78Xvp5B6r0lC1XriIjeBj0Qt11nAhIHF4yYgZqbOITgfC2CGuolxvDVqHUenULaHj3q8C+j9I6xDvxkLHHsKY0QFzxBjLvCYoSUhSkOCcHEqJPDYjiTdCeZUkkeNjro+O+jECGICbMIJhkDbI2cOldEZt97FxsI08erirR5MQAEOwxj26d3McjB2E0kiYgxIcTMU1Jmj1tj4nRYpUxo1lDiDcbsOZrOLsA2wA1KLyhOCPDIQA */
+/** @xstate-layout N4IgpgJg5mDOIC5QBcD2FWwHQDEzIGMALASwDsoACNDbAdQEMTlyoBiAD1mQeTCwYAzPgCcAFAEYADDICUbGplz5irauiWNmrRKAAOmbajK6QHRAFoA7ABYsEiQFZHEgJwOpADgBMAZiueADQgAJ6IElZWWD7eno7e7q623jaOAL5pwYrYeISkFOq0bBhk-OQAbqgA1vzZynlq2QgVqAS8JMYA2lIAuqYGsEYmSGaINla+0QBsNl42U1JTvp7jwWEIvg5YvjY2vlPe3o6uvlKxGVkaOSr5VNlsYCIiqCJYegA2vIIvALZYdblVAUmi02iwur1+oZwcNQOYEBJvBJ7K5PL5vFNHD4bK4bBJfGtEC5JvEXLiplMrO4KRcQACbo0rpxuLx+EJRGJTnIFFd6kC7lcoYMYaZ4RYHK4sK5KbtZlIIgqCaExgkpeMkc4ZEclrS6gAVK6UH4MMgMGA-MBkZBYA20SgEERgdrGLAASQg7zAbAAwo7WYVUEKhqLEEkotKMa4ZAclhJCQjpFgZPFfFjfP4pO50pk6bzbZgjSazWALVabYaHU6YVhfVW1AwA1gtCwCt8RAH7X6YWwAMoMcpgANBkUjeFOJJYFO7Txoqykqbx2KSiKp5wSA6OTNTXV5w3G03my3W-OwTt1l219oFBuKLA9y0QNSlADuHbQlFgjwHImKxjKZEqGp-l3O192LUtjwrLsOjIGtoOvRt7zIR8ChfN9UA-L9HmaADWmdMhuj6EYBmDUdEEODF7FSKNDlROITkXKZJUpFZPAWSkpDxGwd1octQKLQ8yxPM98LgusEMUX9SiwFk+GA3jhLAwTILtStRMvFsqBvDRhxgkMEFcKNJxxeYFiOOIrDjZUEAxOxPEzPxPAiSJfFcbweKURSBJLI8+ILNTqw0+sAx9d5MEHRQRJHfRoT0siDJcLAKUiNEnCmJxM3jWZkSSVxHDnFZUn2FYPOwLyDx8ssAFU9AgK8BV491PTYGq6r4DtZIAV3gYjYuMfTpESnwdmkeVXLnJV1isKRHHsBwcVs3Zlm3HN9T3byIKwVr6oDbAkJQhqMK609Otq-130-ERvyk-9ANqECCyUyrrW2zTdrvB9GQwD8eGQbrKFOtqIqOrCRBwyowRgwjdP6+LpFiSdLIxM45wcBdrIOTwsCOVzjiY9dIlcDIczIdA4FMekGmBXlmx0XrhTiuFLE2KRsdlHFN1TGR13jBV7DiHxEUcU4uKsUq+Vud6eyIVBXzChgDsochHzBF4YdhUYEU8SVUm8aM3B2KR-G8XnLP5rFYnxZMTk8cXAUl7J1f0ix0zsFJZTyo3N3ldH1nGbH5TcREph8WNfHFgBRJ5IEoQQGWp2gnfiiwMXDeZtYpRZ8Xd+MsRygnKQCPxpFt1aHtPJ7NuEgKYLdD0wCTpmEDRbwpXxTZjnspJUkXLF7CsQ50V2NxZjFsuFPWiqq6g89YKCiSNCbJg3rbDsa9hmKGY3zXEVTaJHAWCRPACaUkcXHwkspCl3H2JbU3F8rwN86voIveCtMQz7ULAV9Iou0HG471DvYGY0obBHE4ocX25F8r91OJiA+SxThHAfpPJ+QkZ7qXfpQbSGAPpWkoGhP+IMrqPEAfCbUrNcSHDnAcY2Exz6t2SiHDcBwj6l0uBPfiU9n6YMCtg3BgZ6akSboiLYcRD7HwzmfayR87DOUxHiNiDhjioO4eglS-lX4axItFTW9ksY3w7qiTMthHDxn8EmTMPhIhSGmtKSkajHobV8q9L6SgmoN2EXo+ELc26GyMQkNy8ZMSs0tnEJwNi9hE3Hp5NByktpnTenUfa7ifq8H+oDc6JDvzkPCHsKY0R4bxBjAfBhGMUhSlojsQyM5sROIri46qST3E9U3iI-RXh-GzECYZE21k1xVLnPMVyywnISAaYWHhVo8kIACHYIx44u5mPjC7WaqJnD2TxHlSJixSqzLWVjd2uxPZcx9qskuUou4+CNtrFIzhiZpCAA */
 export const todosMachine = createMachine(
   {
     context: { todos: [] },
@@ -35,7 +35,7 @@ export const todosMachine = createMachine(
           data: TodoItem[];
         };
         "Send new todo to server": {
-          data: void;
+          data: TodoItem;
         };
         "Send todo status update to server": {
           data: void;
@@ -103,7 +103,6 @@ export const todosMachine = createMachine(
                   "Waiting for todo creation": {
                     on: {
                       "Save todo": {
-                        actions: "Assign new todo to context",
                         target: "Sending new todo to server",
                       },
                     },
@@ -113,6 +112,7 @@ export const todosMachine = createMachine(
                       src: "Send new todo to server",
                       onDone: [
                         {
+                          actions: "Assign new todo to context",
                           target: "Sent new todo to server",
                         },
                       ],
@@ -188,10 +188,19 @@ export const todosMachine = createMachine(
         return initialTodos;
       },
 
-      "Send new todo to server": async (_context, event): Promise<void> => {
+      "Send new todo to server": async (
+        _context,
+        { todo: todoLabel }
+      ): Promise<TodoItem> => {
         await waitForTimeout(1_000);
 
-        console.log("Sending new todo to server", event.todo);
+        console.log("Sending new todo to server", todoLabel);
+
+        return {
+          id: nanoid(),
+          label: todoLabel,
+          checked: false,
+        };
       },
 
       "Send todo status update to server": async (
@@ -214,14 +223,7 @@ export const todosMachine = createMachine(
       }),
 
       "Assign new todo to context": assign({
-        todos: ({ todos }, { todo }) => [
-          ...todos,
-          {
-            id: nanoid(),
-            label: todo,
-            checked: false,
-          },
-        ],
+        todos: ({ todos }, { data: todo }) => [...todos, todo],
       }),
 
       "Assign todo status update to context": assign({

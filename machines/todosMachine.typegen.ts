@@ -4,12 +4,17 @@ export interface Typegen0 {
   "@@xstate/typegen": true;
   eventsCausingActions: {
     "Assign initial todos to context": "done.invoke.todos.Fetching todos:invocation[0]";
-    "Assign new todo to context": "Save todo";
+    "Assign new todo to context": "done.invoke.todos.Todos management.Todos creation.Creating a todo.Sending new todo to server:invocation[0]";
     "Assign todo status update to context": "Update todo status";
   };
   internalEvents: {
     "done.invoke.todos.Fetching todos:invocation[0]": {
       type: "done.invoke.todos.Fetching todos:invocation[0]";
+      data: unknown;
+      __tip: "See the XState TS docs to learn how to strongly type this.";
+    };
+    "done.invoke.todos.Todos management.Todos creation.Creating a todo.Sending new todo to server:invocation[0]": {
+      type: "done.invoke.todos.Todos management.Todos creation.Creating a todo.Sending new todo to server:invocation[0]";
       data: unknown;
       __tip: "See the XState TS docs to learn how to strongly type this.";
     };
