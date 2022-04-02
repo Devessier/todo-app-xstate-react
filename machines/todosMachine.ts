@@ -189,7 +189,13 @@ export const todosMachine = createMachine(
                   },
                 },
               },
-              "Failed to fetch todos": {},
+              "Failed to fetch todos": {
+                on: {
+                  "Refresh todos": {
+                    target: "Refetching todos",
+                  },
+                },
+              },
             },
           },
         },
