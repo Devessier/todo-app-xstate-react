@@ -189,6 +189,14 @@ export const todosMachine = createMachine(
                     target: "Failed to fetch todos",
                   },
                 },
+                on: {
+                  "Save todo": {
+                    target: "Idle",
+                  },
+                  "Update todo status": {
+                    target: "Idle",
+                  },
+                },
               },
               "Failed to fetch todos": {
                 on: {
