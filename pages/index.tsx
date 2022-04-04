@@ -5,6 +5,7 @@ import { useKey } from "react-use";
 import { PlusIcon } from "@heroicons/react/solid";
 import CheckboxList from "../components/CheckboxList";
 import { todosMachine } from "../machines/todosMachine";
+import clsx from "clsx";
 
 interface CreateTodoFormProps {
   handleSaveTodo: (newTodo: string) => void;
@@ -97,6 +98,7 @@ const Home: NextPage = () => {
   const shouldShowErrorState = state.hasTag("show error state");
   const showTodoCreationForm = state.hasTag("show todo creation form");
   const isSendingRequestToServer = state.hasTag("is sending request to server");
+  const isRefetchingTodos = state.hasTag("is refreshing todos");
   const thingsToDo = state.context.todos.filter(
     ({ checked }) => checked === false
   );
@@ -131,6 +133,12 @@ const Home: NextPage = () => {
     });
   }
 
+  function handleRefreshTodos() {
+    send({
+      type: "Refresh todos",
+    });
+  }
+
   useKey("Escape", handleCloseTodoCreation);
 
   return (
@@ -149,17 +157,35 @@ const Home: NextPage = () => {
         {shouldShowNothing ? null : shouldShowErrorState ? (
           <p>An error occured while fetching todos</p>
         ) : (
-          <>
+          <div className="mx-auto max-w-7xl">
             <header>
-              <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <h1 className="text-3xl font-bold leading-tight text-gray-900">
-                  Things to get done
-                </h1>
+              <div className="px-4 sm:px-6 lg:px-8 md:flex md:items-center md:justify-between">
+                <div className="flex-1 min-w-0">
+                  <h1 className="text-3xl font-bold leading-tight text-gray-900">
+                    Things to get done
+                  </h1>
+                </div>
+
+                <div className="flex mt-4 md:mt-0 md:ml-4">
+                  <button
+                    type="button"
+                    disabled={isRefetchingTodos === true}
+                    className={clsx([
+                      "inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-yellow-500 border border-transparent rounded-md shadow-sm hover:bg-yellow-600 disabled:hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500",
+                      {
+                        "animate-pulse": isRefetchingTodos === true,
+                      },
+                    ])}
+                    onClick={handleRefreshTodos}
+                  >
+                    Refresh
+                  </button>
+                </div>
               </div>
             </header>
 
             <main>
-              <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+              <div className="transition-opacity duration-200 sm:px-6 lg:px-8">
                 <div className="px-4 py-8 space-y-4 sm:px-0">
                   <CheckboxList
                     disableAllList={isSendingRequestToServer}
@@ -199,7 +225,7 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </main>
-          </>
+          </div>
         )}
       </div>
     </div>
